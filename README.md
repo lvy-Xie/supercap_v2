@@ -10,7 +10,7 @@
 supercap_v2/
 ├── README.md
 ├── hardware/                  # 硬件资料预留，暂不放置资料
-│   └── .gitkeep
+│   └── README.md
 └── software/
     ├── README.md
     ├── 平均电流/               # 当前工程源码及配套文件
@@ -28,7 +28,7 @@ supercap_v2/
         └── README.md
 ```
 
-`hardware/` 仅含用于 Git 跟踪空目录的 `.gitkeep`，暂不上传 PDF、原理图、PCB 或其他硬件资料。
+`hardware/` 仅用 README.md 保留目录，暂不上传硬件资料。
 
 ## 项目组成
 
@@ -59,12 +59,12 @@ supercap_v2/
 | `Codes/cla_tasks.cla` | CLA 任务与周期性控制计算 |
 | `Codes/cla_adc.c` | ADC、DMA 与 CLA 数据链路 |
 | `Codes/telemetry.c` | 串口遥测 |
-| `Codes/buzzer.c` | 蜂鸣器与启动音频 |
+| `Codes/buzzer.c` | 蜂鸣器驱动 |
 | `c2000.syscfg` | 外设静态配置来源 |
 | `device/`、`targetConfigs/` | 器件支持与调试目标配置 |
 | `docs/` | 原工程的调试说明 |
 | `tests/` | 主机检查与测试 |
-| `tools/` | 构建、采样校准与音频处理工具 |
+| `tools/` | 构建与采样校准工具 |
 
 ### 峰值电流控制软件
 
@@ -79,14 +79,13 @@ supercap_v2/
    ```sh
    cd software/平均电流
    sh tools/build.sh
-   sh tests/run_host_checks.sh
    ```
 
-构建脚本支持通过 `CCS_ROOT` 与 `C2000WARE_ROOT` 指定安装路径。首次运行主机检查前，应先构建工程，以生成检查所需的外设配置和链接结果。
+构建脚本支持通过 `CCS_ROOT` 与 `C2000WARE_ROOT` 指定安装路径。原工程测试文件按原样归档；部分检查依赖本次未收录的音频处理工具，测试入口尚未针对本仓库裁剪。
 
 ## 归档说明
 
-本次导入保留源码、CCS 工程配置、器件支持文件、已有生成配置、调试说明、测试及工具。未导入本机缓存、临时目录、对象文件和旧固件输出，构建产物由本机工具链重新生成。
+本次仅导入原工程已有的源码、CCS 工程配置、器件支持文件、已有生成配置、调试说明、测试及工具；除 Markdown 说明外，不新增或改写文件。音频处理工具和原始音频不收录。未导入本机缓存、临时目录、对象文件和旧固件输出，构建产物由本机工具链重新生成。
 
 原工程中的调试说明、校准记录和配置文件作为工程配套资料保留，其中已有的历史参数不在本总说明中展开；具体参数及版本对应关系后续统一整理。
 
