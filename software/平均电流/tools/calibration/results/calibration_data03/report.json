@@ -1,0 +1,65 @@
+{
+  "source_csv": "tools/calibration/data/calibration_data03_measured.csv",
+  "snapshot_csv": "tools/calibration/data/calibration_data03_original.csv",
+  "note": "Snapshot has no cap_current values; cap_current single-point row comes from the user message.",
+  "voltage_coefficients_changed": false,
+  "channels": {
+    "input_current": {
+      "channel": "input_current",
+      "unit": "A",
+      "raw_field": "Raw[2]",
+      "slope_float32": 0.020472420379519463,
+      "intercept_float32": -41.100685119628906,
+      "slope_fit_double": 0.020472419888501115,
+      "intercept_fit_double": -41.100683542582615,
+      "zero_value_adc": 2007.6124052603905,
+      "fit_adc_range": [
+        2058.0,
+        2302.0
+      ],
+      "fit_reference_range": [
+        1.027,
+        6.026
+      ],
+      "fit": {
+        "points": 5,
+        "rmse": 0.0081278975705318,
+        "max_abs_error": 0.011853240966797074,
+        "mean_error": -6.591796873234301e-07,
+        "r_squared": 0.9999776748778877
+      },
+      "check": {
+        "points": 2,
+        "rmse": 0.010265567233637517,
+        "max_abs_error": 0.014132476806640426,
+        "mean_error": -0.008727325439453093,
+        "r_squared": 0.9983206143301687
+      },
+      "warnings": [
+        "存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。",
+        "缺少实测零电流点。",
+        "未覆盖正负电流，反向校准尚未验证。"
+      ],
+      "macro": "#define SUPERCAP_CALIBRATION_INPUT_CURRENT { 2.047242038e-02F, -4.110068512e+01F }"
+    },
+    "cap_current": {
+      "channel": "cap_current",
+      "method": "single-point offset correction; slope retained from prior theoretical coefficient",
+      "status": "offset_corrected_at_1A; slope and other current ranges not independently verified",
+      "source": "User measurement in this conversation: I_CAP_Raw=1966, instrument current=1 A",
+      "raw_field": "I_CAP_Raw",
+      "slope_float32": -0.02014652080833912,
+      "intercept_float32": 40.60805892944336,
+      "previous_slope_float32": -0.02014652080833912,
+      "previous_intercept_float32": 41.25,
+      "raw": 1966,
+      "reference": 1.0,
+      "unit": "A",
+      "previous_prediction": 1.6419410705566406,
+      "prediction": 1.0,
+      "error": 0.0,
+      "independent_check_points": 0,
+      "macro": "#define SUPERCAP_CALIBRATION_CAP_CURRENT { -2.014652081e-02F, 4.060805893e+01F }"
+    }
+  }
+}
