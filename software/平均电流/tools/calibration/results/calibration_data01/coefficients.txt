@@ -1,0 +1,6 @@
+/* 校准候选结果需独立验证，不要直接包含本文件。 */
+/* 将对应宏手动填回 Codes/includes/config.h。 */
+/* 本工具不会修改功率级启停状态。 */
+#define SUPERCAP_CALIBRATION_REFEREE { 2.047242038e-02F, -4.110068512e+01F }
+#define SUPERCAP_CALIBRATION_CHASSIS { 2.034800500e-02F, -4.084916306e+01F }
+#define SUPERCAP_CALIBRATION_INPUT_VOLTAGE { 8.047959767e-03F, -3.887796402e-02F }

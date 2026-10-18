@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>Supercap calibration</title><style>body{font:16px system-ui;max-width:980px;margin:32px auto;padding:0 20px;color:#263244}table{border-collapse:collapse}td,th{padding:8px 14px;border-bottom:1px solid #ddd;text-align:right}pre{white-space:pre-wrap}img{max-width:100%;height:auto}.warning{color:#92400e}</style><body><h1>CANDIDATE COEFFICIENTS - verify independently before use</h1>
+<p>Source: /Users/lvy/workspace_ccstheia/Supercap_V2/tools/calibration/data/calibration_data01_measured.csv</p>
+<p>Model: physical = k * ADC + b. Residual = predicted - reference. Each point has equal weight after averaging.</p>
+<p>拟合结果不是校准批准。请核对测量范围、方向、独立验证误差和仪表精度；不要仅凭 R² 解锁功率级。</p>
+<p>Missing channels: bridge_a, bridge_b, cap_current, cap_voltage</p>
+<h2>referee</h2>
+<pre>#define SUPERCAP_CALIBRATION_REFEREE { 2.047242038e-02F, -4.110068512e+01F }</pre>
+<p>Fit ADC range: [2058.0, 2302.0]; zero-value ADC: 2007.61</p>
+<table><tr><th>Dataset</th><th>Points</th><th>RMSE</th><th>Max |error|</th><th>R²</th></tr>
+<tr><td>fit</td><td>5</td><td>0.0081279 A</td><td>0.0118532 A</td><td>0.999977675</td></tr>
+<tr><td>check</td><td>2</td><td>0.0102656 A</td><td>0.0141325 A</td><td>0.998320614</td></tr>
+</table>
+<p class='warning'>存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。</p>
+<p class='warning'>缺少实测零电流点。</p>
+<p class='warning'>未覆盖正负电流，反向校准尚未验证。</p>
+<img src="referee.svg" alt="referee fit and residuals" width="900">
+<h2>chassis</h2>
+<pre>#define SUPERCAP_CALIBRATION_CHASSIS { 2.034800500e-02F, -4.084916306e+01F }</pre>
+<p>Fit ADC range: [2056.0, 2302.0]; zero-value ADC: 2007.53</p>
+<table><tr><th>Dataset</th><th>Points</th><th>RMSE</th><th>Max |error|</th><th>R²</th></tr>
+<tr><td>fit</td><td>5</td><td>0.0122094 A</td><td>0.0211372 A</td><td>0.999949624</td></tr>
+<tr><td>check</td><td>2</td><td>0.019354 A</td><td>0.0268898 A</td><td>0.994006785</td></tr>
+</table>
+<p class='warning'>存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。</p>
+<p class='warning'>缺少实测零电流点。</p>
+<p class='warning'>未覆盖正负电流，反向校准尚未验证。</p>
+<img src="chassis.svg" alt="chassis fit and residuals" width="900">
+<h2>input_voltage</h2>
+<pre>#define SUPERCAP_CALIBRATION_INPUT_VOLTAGE { 8.047959767e-03F, -3.887796402e-02F }</pre>
+<p>Fit ADC range: [2847.0, 3095.0]; zero-value ADC: 4.83079</p>
+<table><tr><th>Dataset</th><th>Points</th><th>RMSE</th><th>Max |error|</th><th>R²</th></tr>
+<tr><td>fit</td><td>5</td><td>0.00897516 V</td><td>0.0164365 V</td><td>0.999838259</td></tr>
+<tr><td>check</td><td>2</td><td>0.0327721 V</td><td>0.0369495 V</td><td>0.982107334</td></tr>
+</table>
+<p class='warning'>存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。</p>
+<img src="input_voltage.svg" alt="input_voltage fit and residuals" width="900"></body></html>
