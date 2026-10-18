@@ -1,0 +1,40 @@
+类别,64PM物理脚号,封装焊盘/通道,GPIO/外设功能,SysConfig实例或生成定义,方向,上电/输入配置,用途,状态
+PWM,52,GPIO0,EPWM1_A,PWM_BRIDGE_A_EPWMA_GPIO,输出,349.65kHz；互补死区50ns；上电OST拉低,A桥高侧PWM,电压模式四开关控制；过压保护已关闭
+PWM,51,GPIO1,EPWM1_B,PWM_BRIDGE_A_EPWMB_GPIO,输出,349.65kHz；互补死区50ns；上电OST拉低,A桥低侧PWM,电压模式四开关控制；过压保护已关闭
+PWM,50,GPIO2,EPWM2_A,PWM_BRIDGE_B_EPWMA_GPIO,输出,349.65kHz；互补死区50ns；上电OST拉低,B桥高侧PWM；相移180°,电压模式四开关控制；过压保护已关闭
+PWM,49,GPIO3,EPWM2_B,PWM_BRIDGE_B_EPWMB_GPIO,输出,349.65kHz；互补死区50ns；上电OST拉低,B桥低侧PWM；相移180°,电压模式四开关控制；过压保护已关闭
+PWM,64,GPIO6,EPWM4_A,PWM_BUZZER_EPWMA_GPIO,输出,ePWM4A，静音时强制低电平,约64 kHz PWM载波播放我是顾子文,约8 kHz采样、时长约1.05秒，结束静音
+PWM,33,GPIO16,EPWM5_A,PWM_FAN_EPWMA_GPIO,输出,GPIO输出低电平,25 kHz风扇PWM；缺开漏驱动，接风扇前须改板,本版关闭风扇输出，硬件接线注意事项保留
+GPIO+INPUTXBAR+eCAP,62,GPIO9,GPIO输入 / INPUTXBAR7 / ECAP1,FAN_TACH / FAN_TACH_INPUT_INPUT / FAN_TACH_CAPTURE_BASE,输入,浮空输入、同步采样；板上R69=0Ω接D3V3,TACH测速输入；必须把R69改为限流上拉电阻,保留硬件引脚记录，本版不初始化此功能
+GPIO,29,GPIO13,GPIO,LED_1 / LED_1_GPIO_PIN_CONFIG,输出,初值1,LED 1，高电平点亮,保留硬件引脚记录，本版不初始化此功能
+GPIO,30,GPIO12,GPIO,LED_2 / LED_2_GPIO_PIN_CONFIG,输出,初值1,LED 2，高电平点亮,保留硬件引脚记录，本版不初始化此功能
+GPIO,31,GPIO11,GPIO,LED_3 / LED_3_GPIO_PIN_CONFIG,输出,初值1,LED 3，高电平点亮,保留硬件引脚记录，本版不初始化此功能
+GPIO,32,GPIO33,GPIO,LED_4 / LED_4_GPIO_PIN_CONFIG,输出,初值1,LED 4，高电平点亮；R49=1kΩ,保留硬件引脚记录，本版不初始化此功能
+SCI,34,GPIO17,SCIA_RX,SCI_DEBUG_SCIRX_GPIO,输入,外设输入,保留SCIA接收引脚；本版不接收命令,无需连接；功率桥仅通过Debug启停
+SCI,35,GPIO24,SCIA_TX,SCI_DEBUG_SCITX_GPIO,输出,外设输出,VOFA四通道VCAP/ICAP/VBUS/IIN发送，1562500 8N1,已启用；GPIO24接USB串口RX并共地
+CAN,61,GPIO5,CANA_RX,CAN_CHASSIS_CANRX_GPIO,输入,外设输入,底盘CAN接收，1 Mbit/s,保留硬件引脚记录，本版不初始化此功能
+CAN,48,GPIO4,CANA_TX,CAN_CHASSIS_CANTX_GPIO,输出,外设输出,底盘CAN发送，1 Mbit/s,保留硬件引脚记录，本版不初始化此功能
+电源硬接,40,GPIO32,不分配外设,无,输入默认态,直接接D3V3,禁止配置成输出或I2C,定稿图已确认
+ADC,9,A2/B6/PGA1_OF,ADCA2,ADC_A_CHANNEL_I_BRIDGE_A,模拟输入,片内1.65V参考/ADC 0～3.3V量程；ePWM3 SOCA 50kHz触发,A端口INA240经RC滤波后的平均电流原始码bridgeACurrentRaw,保留原引脚与校准系数；50kHz采样
+ADC,18,C1/PGA2_IN,ADCC1,ADC_C_CHANNEL_I_BRIDGE_B,模拟输入,片内1.65V参考/ADC 0～3.3V量程；ePWM3 SOCA 50kHz触发,B端口INA240经RC滤波后的平均电流原始码bridgeBCurrentRaw,保留原引脚与校准系数；50kHz采样
+ADC+CMPSS,7,B2/C6/PGA3_OF,ADCB2/CMPSS3 HP0/LP0,ADC_B_CHANNEL_V_BAT / CMPSS_V_BAT_BASE,模拟输入,ePWM3 SOCA 50kHz触发；仅ADC采样,VBUS母线电压,不启用本通道CMPSS保护
+ADC+CMPSS,24,B4/C8/PGA4_OF,ADCB4/CMPSS4 HP0,ADC_B_CHANNEL_V_CAP / CMPSS_V_CAP_BASE,模拟输入,ADCB4；ePWM3 SOCB 50kHz触发；CMPSS4不初始化,VCAP；仅采样电容电压,过压保护已关闭；超过原约29V门限不关断
+ADC,6,A6/PGA5_OF,ADCA6,ADC_A_CHANNEL_I_IN,模拟输入,片内1.65V参考/ADC 0～3.3V量程；ePWM3 SOCB 50kHz触发,输入电流原始码 I_IN_Raw,保留原引脚与校准系数；50kHz采样
+ADC+CMPSS,25,A10/B1/C10/PGA7_OF,ADCC10/CMPSS7 HP0/LP0,ADC_C_CHANNEL_I_CAP / CMPSS_I_CAP_BASE,模拟输入,ePWM3 SOCB 50kHz触发；仅ADC采样,I_CAP电容电流,不启用本通道CMPSS保护
+ADC,19,C3/PGA4_IN,ADCC3,ADC_C_CHANNEL_I_CHASSIS,模拟输入,ePWM3 SOCB 50kHz触发,底盘输出电流原始码chassisOutputCurrentRaw,保留原引脚与校准系数；50kHz采样
+ADC,11,C4/PGA5_IN,ADCC4,ADC_C_CHANNEL_TEMP_FET_B,模拟输入,100Hz软件触发SOC4,B桥GaN温度原始码bridgeBMosfetTemperatureRaw，10kΩ/B3450 NTC,保留SysConfig配置，本版不触发温度采样
+CMPSS,12,C0/PGA1_IN,CMPSS1 HP1/LP1,CMPSS_I_BRIDGE_A_BASE,模拟输入,本版未初始化,I_BRIDGE_A_PEAK；±13A经TRIP7触发全桥CBC和OST,峰值电流控制与过流保护已移除
+CMPSS,23,A4/B8/PGA2_OF,CMPSS2 HP0/LP0,CMPSS_I_BRIDGE_B_BASE,模拟输入,本版未初始化,I_BRIDGE_B_PEAK；±13A经TRIP7触发全桥CBC和OST,峰值电流控制与过流保护已移除
+ADC,14,A1/DACB_OUT,ADCA1,ADC_A_CHANNEL_TEMP_FET_A,模拟输入,100Hz软件触发SOC2,A桥GaN温度原始码bridgeAMosfetTemperatureRaw,保留SysConfig配置，本版不触发温度采样
+模拟电源网络,8,B3/VDAC,不分配ADC SOC,无,模拟输入,直接接A3V3,不能作为TEMP_FET_B采样,定稿图已确认
+ADC,13,C2/PGA3_IN,ADCC2,ADC_C_CHANNEL_TEMP_L,模拟输入,100Hz软件触发SOC2,功率电感温度原始码inductorTemperatureRaw,保留SysConfig配置，本版不触发温度采样
+保留模拟脚,15,A0/B15/C15/DACA_OUT,未分配,无,模拟输入/高阻,DACA不启用,未确认外部网络前禁止DACA驱动,保留
+参考电压,16,VREFHIA/VREFHIB/VREFHIC,VREFHI,ASYSCTL internal 1P65,片内参考输出,仅C43=2.2µF至AGND,三组ADC 0～3.3V量程,定稿图已确认
+参考地,17,VREFLOA/VREFLOB/VREFLOC,VREFLO,ASYSCTL internal 1P65,模拟参考地,接模拟参考地,三组ADC共用参考低端,硬件必须连接
+模拟电源,22,VDDA,VDDA,专用电源脚,电源,按数据手册去耦,模拟电源,硬件必须连接
+模拟地,21,VSSA,VSSA,专用地脚,地,接模拟地平面,模拟地,硬件必须连接
+PGA地,10,PGA1_GND/PGA3_GND/PGA5_GND,PGA_GND,专用模拟地,地,接模拟地平面,PGA模拟地,硬件必须连接
+PGA地,20,PGA2_GND/PGA4_GND/PGA6_GND,PGA_GND,专用模拟地,地,接模拟地平面,PGA模拟地,硬件必须连接
+专用,41/42,GPIO18_X2/X1,晶振,无,专用,晶振连接,不可作为GPIO,保留
+专用,36/37/38/39,TCK/TDO/TMS/TDI,JTAG,无,专用,调试接口,不可占用,保留
+专用,53/54/55/56,VDDIO_SW/VSW/VSS_SW/VFBSW,片内DC-DC,无,专用,电源回路,不可作为GPIO,保留

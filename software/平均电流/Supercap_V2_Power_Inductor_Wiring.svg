@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080">
+  <defs>
+    <style>
+      .title { font: 700 42px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#10243e; }
+      .subtitle { font: 500 22px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#456078; }
+      .h1 { font: 700 28px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#10243e; }
+      .h2 { font: 700 23px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#10243e; }
+      .label { font: 600 20px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#17324d; }
+      .small { font: 500 17px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#42566c; }
+      .tiny { font: 500 15px Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill:#52667b; }
+      .wire { stroke:#263746; stroke-width:7; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .bus { stroke:#d84545; stroke-width:9; fill:none; stroke-linecap:round; }
+      .gnd { stroke:#27669b; stroke-width:9; fill:none; stroke-linecap:round; }
+      .sw { stroke:#8a58d5; stroke-width:8; fill:none; stroke-linecap:round; }
+      .charge { stroke:#e5493f; stroke-width:7; fill:none; stroke-linecap:round; marker-end:url(#arrowCharge); }
+      .discharge { stroke:#1585d1; stroke-width:7; fill:none; stroke-linecap:round; marker-end:url(#arrowDischarge); }
+      .card { fill:#ffffff; stroke:#ccdae6; stroke-width:2; }
+      .note { fill:#fff8e7; stroke:#efb64d; stroke-width:2; }
+      .warn { fill:#fff0f0; stroke:#df5757; stroke-width:2.5; }
+      .ok { fill:#edf9f2; stroke:#48a675; stroke-width:2.5; }
+      .mos { fill:#f5f1ff; stroke:#8054c7; stroke-width:3; }
+      .cap { fill:#eff8ff; stroke:#3586bd; stroke-width:3; }
+    </style>
+    <marker id="arrowCharge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e5493f"/>
+    </marker>
+    <marker id="arrowDischarge" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1585d1"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#24425f" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="1080" fill="#f4f7fb"/>
+  <text x="80" y="72" class="title">Supercap V2 四开关双向功率级：电感与超级电容接线</text>
+  <text x="82" y="112" class="subtitle">结论：超级电容不直接接在电感端；它接在 B 侧直流端 CAP+ / PGND，由半桥控制能量经过电感双向流动。</text>
+
+  <rect x="60" y="145" width="1680" height="665" rx="26" class="card" filter="url(#shadow)"/>
+
+  <!-- Input source -->
+  <rect x="95" y="260" width="210" height="300" rx="22" fill="#fff5e8" stroke="#e8a552" stroke-width="3"/>
+  <text x="200" y="305" text-anchor="middle" class="h1">裁判系统 / 电池</text>
+  <text x="200" y="345" text-anchor="middle" class="label">INPUT+ / BAT+</text>
+  <circle cx="200" cy="405" r="55" fill="#ffffff" stroke="#e8a552" stroke-width="4"/>
+  <text x="200" y="398" text-anchor="middle" class="h1">24 V</text>
+  <text x="200" y="432" text-anchor="middle" class="small">直流输入</text>
+  <text x="200" y="510" text-anchor="middle" class="small">负极接 PGND</text>
+
+  <!-- input path -->
+  <path d="M305 350 H370" class="bus"/>
+  <rect x="370" y="324" width="150" height="52" rx="10" fill="#fff" stroke="#d84545" stroke-width="3"/>
+  <text x="445" y="356" text-anchor="middle" class="small">F1 + R17/R18</text>
+  <path d="M520 350 H610" class="bus"/>
+  <text x="565" y="330" text-anchor="middle" class="tiny">A_RAIL</text>
+
+  <!-- A bridge -->
+  <rect x="610" y="215" width="230" height="435" rx="22" fill="#faf8ff" stroke="#a98bd8" stroke-width="3"/>
+  <text x="725" y="255" text-anchor="middle" class="h1">A侧半桥</text>
+  <rect x="655" y="295" width="140" height="92" rx="14" class="mos"/>
+  <text x="725" y="332" text-anchor="middle" class="h2">Q_AH</text>
+  <text x="725" y="363" text-anchor="middle" class="small">上管 GaN</text>
+  <rect x="655" y="500" width="140" height="92" rx="14" class="mos"/>
+  <text x="725" y="537" text-anchor="middle" class="h2">Q_AL</text>
+  <text x="725" y="568" text-anchor="middle" class="small">下管 GaN</text>
+  <path d="M725 387 V440" class="sw"/>
+  <path d="M725 470 V500" class="sw"/>
+  <circle cx="725" cy="455" r="13" fill="#8a58d5"/>
+  <text x="725" y="625" text-anchor="middle" class="label">桥臂中点 SW_A</text>
+
+  <!-- Inductor -->
+  <path d="M738 455 H880" class="sw"/>
+  <path d="M880 455
+           c15 -55 45 -55 60 0
+           c15 55 45 55 60 0
+           c15 -55 45 -55 60 0
+           c15 55 45 55 60 0
+           c15 -55 45 -55 60 0" class="wire"/>
+  <path d="M1180 455 H1195" class="sw"/>
+  <text x="1030" y="370" text-anchor="middle" class="h1">U7 功率电感</text>
+  <text x="1030" y="405" text-anchor="middle" class="label">15 µH，连接 SW_A ↔ SW_B</text>
+  <text x="1030" y="520" text-anchor="middle" class="small">储能与限制电流纹波</text>
+  <text x="1030" y="548" text-anchor="middle" class="small">两端都是高 dv/dt 开关节点</text>
+
+  <!-- B bridge -->
+  <rect x="1195" y="215" width="230" height="435" rx="22" fill="#faf8ff" stroke="#a98bd8" stroke-width="3"/>
+  <text x="1310" y="255" text-anchor="middle" class="h1">B侧半桥</text>
+  <rect x="1240" y="295" width="140" height="92" rx="14" class="mos"/>
+  <text x="1310" y="332" text-anchor="middle" class="h2">Q_BH</text>
+  <text x="1310" y="363" text-anchor="middle" class="small">上管 GaN</text>
+  <rect x="1240" y="500" width="140" height="92" rx="14" class="mos"/>
+  <text x="1310" y="537" text-anchor="middle" class="h2">Q_BL</text>
+  <text x="1310" y="568" text-anchor="middle" class="small">下管 GaN</text>
+  <path d="M1310 387 V440" class="sw"/>
+  <path d="M1310 470 V500" class="sw"/>
+  <circle cx="1310" cy="455" r="13" fill="#8a58d5"/>
+  <text x="1310" y="625" text-anchor="middle" class="label">桥臂中点 SW_B</text>
+
+  <!-- capacitor path -->
+  <path d="M1310 295 V180 H1500 V300" class="bus"/>
+  <text x="1410" y="170" text-anchor="middle" class="tiny">B_RAIL → R19 → CAP_BULK → R20 → CAP+</text>
+  <rect x="1470" y="300" width="250" height="300" rx="24" class="cap"/>
+  <text x="1595" y="345" text-anchor="middle" class="h1">超级电容组</text>
+  <text x="1595" y="385" text-anchor="middle" class="label">CAP+ 接正极</text>
+  <line x1="1540" y1="445" x2="1650" y2="445" stroke="#3586bd" stroke-width="7"/>
+  <line x1="1555" y1="474" x2="1635" y2="474" stroke="#3586bd" stroke-width="4"/>
+  <text x="1595" y="430" text-anchor="middle" class="h1">＋</text>
+  <text x="1595" y="525" text-anchor="middle" class="h1">−</text>
+  <text x="1595" y="565" text-anchor="middle" class="label">CAP− 接 PGND</text>
+
+  <!-- Ground bus -->
+  <path d="M145 610 H1655" class="gnd"/>
+  <path d="M200 560 V610 M725 592 V610 M1310 592 V610 M1595 600 V610" class="gnd"/>
+  <text x="875" y="642" text-anchor="middle" class="label">PGND：输入负极、A下管源极、B下管源极、超级电容负极共地</text>
+
+  <!-- current arrows -->
+  <path d="M440 680 H1370" class="charge"/>
+  <text x="905" y="714" text-anchor="middle" style="font:700 21px Arial,'PingFang SC','Microsoft YaHei',sans-serif;fill:#d43c35;">充电：INPUT+ → A桥 → SW_A → U7 → SW_B → B桥 → CAP+</text>
+  <path d="M1370 755 H440" class="discharge"/>
+  <text x="905" y="790" text-anchor="middle" style="font:700 21px Arial,'PingFang SC','Microsoft YaHei',sans-serif;fill:#1478bb;">放电：CAP+ → B桥 → SW_B → U7 → SW_A → A桥 → INPUT+/CHASSIS</text>
+
+  <!-- bottom notes -->
+  <rect x="60" y="845" width="535" height="185" rx="22" class="ok"/>
+  <text x="90" y="887" class="h1">正确接线</text>
+  <text x="92" y="927" class="label">1. U7一端接 SW_A，另一端接 SW_B</text>
+  <text x="92" y="963" class="label">2. 超级电容正极接 CAP+</text>
+  <text x="92" y="999" class="label">3. 超级电容负极接 PGND</text>
+
+  <rect x="632" y="845" width="535" height="185" rx="22" class="warn"/>
+  <text x="662" y="887" class="h1">禁止这样连接</text>
+  <text x="664" y="927" class="label">× CAP+ 直接接 SW_A、SW_B 或 U7任一端</text>
+  <text x="664" y="963" class="label">× CAP− 接到开关节点</text>
+  <text x="664" y="999" class="label">× 绕过B桥、R20电流采样和母线电容</text>
+
+  <rect x="1204" y="845" width="536" height="185" rx="22" class="note"/>
+  <text x="1234" y="887" class="h1">PCB连接重点</text>
+  <text x="1236" y="927" class="label">• U7走线短、宽，并远离ADC/比较器输入</text>
+  <text x="1236" y="963" class="label">• CAP+与PGND使用大电流铜皮/母排</text>
+  <text x="1236" y="999" class="label">• 电容侧去耦紧靠B桥功率回路</text>
+</svg>
