@@ -1,0 +1,9 @@
+channel,point,adc_raw,reference,unit,role
+input_current,p1,2058,1.027,A,fit
+input_current,p2,2106,2.026,A,fit
+input_current,p3,2156,3.026,A,fit
+input_current,p4,2204,4.026,A,fit
+input_current,p5,2302,6.026,A,fit
+input_current,p6,2253,5.027,A,check
+input_current,p7,2228,4.526,A,check
+cap_current,reported_1A,1966,1,A,fit
