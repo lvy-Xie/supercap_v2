@@ -1,0 +1,162 @@
+{
+  "source": "/Users/lvy/workspace_ccstheia/Supercap_V2/tools/calibration/data/calibration_data02_measured.csv",
+  "synthetic_demo": false,
+  "model": "physical = k * ADC_raw + b",
+  "method": "unweighted OLS of point means; exported coefficients rounded to float32",
+  "missing_channels": [
+    "bridge_a",
+    "bridge_b",
+    "cap_current"
+  ],
+  "channels": {
+    "referee": {
+      "channel": "referee",
+      "unit": "A",
+      "raw_field": "Raw[2]",
+      "slope_float32": 0.020472420379519463,
+      "intercept_float32": -41.100685119628906,
+      "slope_fit_double": 0.020472419888501115,
+      "intercept_fit_double": -41.100683542582615,
+      "zero_value_adc": 2007.6124052603905,
+      "fit_adc_range": [
+        2058.0,
+        2302.0
+      ],
+      "fit_reference_range": [
+        1.027,
+        6.026
+      ],
+      "fit": {
+        "points": 5,
+        "rmse": 0.0081278975705318,
+        "max_abs_error": 0.011853240966797074,
+        "mean_error": -6.591796873234301e-07,
+        "r_squared": 0.9999776748778877
+      },
+      "check": {
+        "points": 2,
+        "rmse": 0.010265567233637517,
+        "max_abs_error": 0.014132476806640426,
+        "mean_error": -0.008727325439453093,
+        "r_squared": 0.9983206143301687
+      },
+      "warnings": [
+        "存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。",
+        "缺少实测零电流点。",
+        "未覆盖正负电流，反向校准尚未验证。"
+      ],
+      "macro": "#define SUPERCAP_CALIBRATION_REFEREE { 2.047242038e-02F, -4.110068512e+01F }"
+    },
+    "chassis": {
+      "channel": "chassis",
+      "unit": "A",
+      "raw_field": "Raw[4]",
+      "slope_float32": 0.02034800499677658,
+      "intercept_float32": -40.84916305541992,
+      "slope_fit_double": 0.020348005194107375,
+      "intercept_fit_double": -40.84916164420365,
+      "zero_value_adc": 2007.5266868614895,
+      "fit_adc_range": [
+        2056.0,
+        2302.0
+      ],
+      "fit_reference_range": [
+        1.001,
+        6.0
+      ],
+      "fit": {
+        "points": 5,
+        "rmse": 0.012209351449375076,
+        "max_abs_error": 0.021137237548828125,
+        "mean_error": -1.6357421874779732e-06,
+        "r_squared": 0.9999496241265126
+      },
+      "check": {
+        "points": 2,
+        "rmse": 0.019353963852248166,
+        "max_abs_error": 0.026889801025390625,
+        "mean_error": 0.010890960693359375,
+        "r_squared": 0.9940067853312939
+      },
+      "warnings": [
+        "存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。",
+        "缺少实测零电流点。",
+        "未覆盖正负电流，反向校准尚未验证。"
+      ],
+      "macro": "#define SUPERCAP_CALIBRATION_CHASSIS { 2.034800500e-02F, -4.084916306e+01F }"
+    },
+    "input_voltage": {
+      "channel": "input_voltage",
+      "unit": "V",
+      "raw_field": "Raw[5]",
+      "slope_float32": 0.008047959767282009,
+      "intercept_float32": -0.03887796401977539,
+      "slope_fit_double": 0.00804795945974069,
+      "intercept_fit_double": -0.038877962997645454,
+      "zero_value_adc": 4.83078508640525,
+      "fit_adc_range": [
+        2847.0,
+        3095.0
+      ],
+      "fit_reference_range": [
+        22.87,
+        24.87
+      ],
+      "fit": {
+        "points": 5,
+        "rmse": 0.008975161353008309,
+        "max_abs_error": 0.016436462402342755,
+        "mean_error": 1.602172851278283e-06,
+        "r_squared": 0.9998382589323899
+      },
+      "check": {
+        "points": 2,
+        "rmse": 0.03277205023473813,
+        "max_abs_error": 0.03694953918456889,
+        "mean_error": -0.032463569641112855,
+        "r_squared": 0.9821073340010297
+      },
+      "warnings": [
+        "存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。"
+      ],
+      "macro": "#define SUPERCAP_CALIBRATION_INPUT_VOLTAGE { 8.047959767e-03F, -3.887796402e-02F }"
+    },
+    "cap_voltage": {
+      "channel": "cap_voltage",
+      "unit": "V",
+      "raw_field": "Raw[6]",
+      "slope_float32": 0.008221379481256008,
+      "intercept_float32": 0.0051065473817288876,
+      "slope_fit_double": 0.008221379351467405,
+      "intercept_fit_double": 0.005106547187159194,
+      "zero_value_adc": -0.6211302365219058,
+      "fit_adc_range": [
+        620.0,
+        2980.0
+      ],
+      "fit_reference_range": [
+        5.09,
+        24.5
+      ],
+      "fit": {
+        "points": 5,
+        "rmse": 0.008287466550159564,
+        "max_abs_error": 0.01236167907714858,
+        "mean_error": 0.0,
+        "r_squared": 0.9999986986653235
+      },
+      "check": {
+        "points": 1,
+        "rmse": 0.009005661010743182,
+        "max_abs_error": 0.009005661010743182,
+        "mean_error": -0.009005661010743182,
+        "r_squared": null
+      },
+      "warnings": [
+        "存在单行数据：若不是已平均ADC，请采集多个稳态样本；单行均值无法估计噪声。",
+        "部分验证点在拟合ADC范围外，属于外推。"
+      ],
+      "macro": "#define SUPERCAP_CALIBRATION_CAP_VOLTAGE { 8.221379481e-03F, 5.106547382e-03F }"
+    }
+  }
+}

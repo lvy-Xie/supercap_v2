@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="670" viewBox="0 0 900 670">
+<rect width="900" height="670" fill="white"/>
+<g font-family="Arial,sans-serif" font-size="13" fill="#263244">
+<text x="40" y="30" text-anchor="start" font-size="22">cap_voltage calibration</text>
+<text x="40" y="55" text-anchor="start" font-size="13">y = 0.00822137948 * ADC + (0.00510654738) [V]</text>
+<text x="40" y="78" text-anchor="start" font-size="13">Blue: fit points    Orange: independent check points    Line: float32 coefficients</text>
+<line x1="90.000" y1="115.000" x2="90.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="90.000" y1="450.000" x2="90.000" y2="600.000" stroke="#dce1e8"/>
+<text x="90.0" y="375" text-anchor="middle" font-size="13">405.84</text>
+<text x="90.0" y="625" text-anchor="middle" font-size="13">405.84</text>
+<line x1="90.000" y1="350.000" x2="830.000" y2="350.000" stroke="#dce1e8"/>
+<text x="80" y="354.0" text-anchor="end" font-size="13">3.3276</text>
+<line x1="90.000" y1="600.000" x2="830.000" y2="600.000" stroke="#dce1e8"/>
+<text x="80" y="604.0" text-anchor="end" font-size="13">-0.0129</text>
+<line x1="238.000" y1="115.000" x2="238.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="238.000" y1="450.000" x2="238.000" y2="600.000" stroke="#dce1e8"/>
+<text x="238.0" y="375" text-anchor="middle" font-size="13">1026.9</text>
+<text x="238.0" y="625" text-anchor="middle" font-size="13">1026.9</text>
+<line x1="90.000" y1="303.000" x2="830.000" y2="303.000" stroke="#dce1e8"/>
+<text x="80" y="307.0" text-anchor="end" font-size="13">8.4386</text>
+<line x1="90.000" y1="570.000" x2="830.000" y2="570.000" stroke="#dce1e8"/>
+<text x="80" y="574.0" text-anchor="end" font-size="13">-0.0075</text>
+<line x1="386.000" y1="115.000" x2="386.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="386.000" y1="450.000" x2="386.000" y2="600.000" stroke="#dce1e8"/>
+<text x="386.0" y="375" text-anchor="middle" font-size="13">1648</text>
+<text x="386.0" y="625" text-anchor="middle" font-size="13">1648</text>
+<line x1="90.000" y1="256.000" x2="830.000" y2="256.000" stroke="#dce1e8"/>
+<text x="80" y="260.0" text-anchor="end" font-size="13">13.55</text>
+<line x1="90.000" y1="540.000" x2="830.000" y2="540.000" stroke="#dce1e8"/>
+<text x="80" y="544.0" text-anchor="end" font-size="13">-0.00207</text>
+<line x1="534.000" y1="115.000" x2="534.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="534.000" y1="450.000" x2="534.000" y2="600.000" stroke="#dce1e8"/>
+<text x="533.9999999999999" y="375" text-anchor="middle" font-size="13">2269</text>
+<text x="533.9999999999999" y="625" text-anchor="middle" font-size="13">2269</text>
+<line x1="90.000" y1="209.000" x2="830.000" y2="209.000" stroke="#dce1e8"/>
+<text x="80" y="213.0" text-anchor="end" font-size="13">18.66</text>
+<line x1="90.000" y1="510.000" x2="830.000" y2="510.000" stroke="#dce1e8"/>
+<text x="80" y="514.0" text-anchor="end" font-size="13">0.00337</text>
+<line x1="682.000" y1="115.000" x2="682.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="682.000" y1="450.000" x2="682.000" y2="600.000" stroke="#dce1e8"/>
+<text x="682.0" y="375" text-anchor="middle" font-size="13">2890.1</text>
+<text x="682.0" y="625" text-anchor="middle" font-size="13">2890.1</text>
+<line x1="90.000" y1="162.000" x2="830.000" y2="162.000" stroke="#dce1e8"/>
+<text x="80" y="166.0" text-anchor="end" font-size="13">23.771</text>
+<line x1="90.000" y1="480.000" x2="830.000" y2="480.000" stroke="#dce1e8"/>
+<text x="80" y="484.0" text-anchor="end" font-size="13">0.0088</text>
+<line x1="830.000" y1="115.000" x2="830.000" y2="350.000" stroke="#dce1e8"/>
+<line x1="830.000" y1="450.000" x2="830.000" y2="600.000" stroke="#dce1e8"/>
+<text x="830.0" y="375" text-anchor="middle" font-size="13">3511.2</text>
+<text x="830.0" y="625" text-anchor="middle" font-size="13">3511.2</text>
+<line x1="90.000" y1="115.000" x2="830.000" y2="115.000" stroke="#dce1e8"/>
+<text x="80" y="119.0" text-anchor="end" font-size="13">28.882</text>
+<line x1="90.000" y1="450.000" x2="830.000" y2="450.000" stroke="#dce1e8"/>
+<text x="80" y="454.0" text-anchor="end" font-size="13">0.0142</text>
+<text x="90" y="106" text-anchor="start" font-size="13">Reference [V]</text>
+<text x="460" y="400" text-anchor="middle" font-size="13">ADC mean [counts]</text>
+<text x="90" y="433" text-anchor="start" font-size="13">Residual = predicted - reference [V]</text>
+<text x="460" y="650" text-anchor="middle" font-size="13">ADC mean [counts]</text>
+<line x1="90.000" y1="528.584" x2="830.000" y2="528.584" stroke="#263244"/>
+<line x1="141.034" y1="333.679" x2="778.966" y2="131.290" stroke="#2563eb"/>
+<circle cx="141.034" cy="333.793" r="4" fill="#2563eb"><title>p1: ADC=620, reference=5.09, n=1, error=0.0123617</title></circle>
+<circle cx="141.034" cy="460.345" r="4" fill="#2563eb"><title>p1: ADC=620, reference=5.09, n=1, error=0.0123617</title></circle>
+<circle cx="229.921" cy="305.378" r="4" fill="#2563eb"><title>p2: ADC=993, reference=8.18, n=1, error=-0.0110633</title></circle>
+<circle cx="229.921" cy="589.655" r="4" fill="#2563eb"><title>p2: ADC=993, reference=8.18, n=1, error=-0.0110633</title></circle>
+<circle cx="437.004" cy="239.719" r="4" fill="#2563eb"><title>p3: ADC=1862, reference=15.32, n=1, error=-0.00668461</title></circle>
+<circle cx="437.004" cy="565.484" r="4" fill="#2563eb"><title>p3: ADC=1862, reference=15.32, n=1, error=-0.00668461</title></circle>
+<circle cx="584.750" cy="192.912" r="4" fill="#2563eb"><title>p4: ADC=2482, reference=20.41, n=1, error=0.000570145</title></circle>
+<circle cx="584.750" cy="525.436" r="4" fill="#2563eb"><title>p4: ADC=2482, reference=20.41, n=1, error=0.000570145</title></circle>
+<circle cx="703.424" cy="155.300" r="4" fill="#2563eb"><title>p5: ADC=2980, reference=24.5, n=1, error=0.00481606</title></circle>
+<circle cx="703.424" cy="501.998" r="4" fill="#2563eb"><title>p5: ADC=2980, reference=24.5, n=1, error=0.00481606</title></circle>
+<circle cx="778.966" cy="131.207" r="4" fill="#d97706"><title>p6: ADC=3297, reference=27.12, n=1, error=-0.00900566</title></circle>
+<circle cx="778.966" cy="578.297" r="4" fill="#d97706"><title>p6: ADC=3297, reference=27.12, n=1, error=-0.00900566</title></circle>
+</g></svg>
