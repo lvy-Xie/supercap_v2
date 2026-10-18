@@ -1,0 +1,31 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// 100 MHz / 286 = 349.650 kHz；整数周期保持两桥同步及固定 50 ns 死区。
+#define PWM_COUNTS (PWM_BRIDGE_A_TBPRD + 1U)
+#define HRPWM_SFO_MAX_STARTUP_CALLS 100000UL
+#define MIN_PWM_DUTY 0.06f
+#define MAX_PWM_DUTY 0.90f
+#define MIN_OUTPUT_DUTY (MIN_PWM_DUTY / MAX_PWM_DUTY)
+#define MAX_OUTPUT_DUTY 10.0f
+#define MAX_CAP_VOLTAGE 28.0f
+#define MAX_CHARGE_CURRENT 15.0f // 沿用参考工程目标上限；不是硬件过流保护。
+// Reborn 功率环的双向限流。
+#define CAP_V_CUTOFF 5.0f
+#define CAP_V_NORMAL 12.0f
+#define MIN_CAP_IOUT 0.1f
+#define MAX_CAP_IOUT 12.0f
+#define LPF_ALPHA 0.118088622f
+
+// 沿用 V2 七路系数，物理量 = k × ADC + b。
+// 输入/底盘电流及两路电压已有拟合；桥 A/B 仍为理论值。
+// 电容电流仅按实测 1966 -> 1 A 修正偏置，斜率仍待多点校准。
+#define SUPERCAP_CALIBRATION_BRIDGE_A                    { 0.020146520F, -41.250000F }
+#define SUPERCAP_CALIBRATION_BRIDGE_B                    {-0.020146520F,  41.250000F }
+#define SUPERCAP_CALIBRATION_INPUT_CURRENT { 2.047242038e-02F, -4.110068512e+01F }
+#define SUPERCAP_CALIBRATION_CAP_CURRENT { -2.014652081e-02F, 4.060805893e+01F }
+#define SUPERCAP_CALIBRATION_CHASSIS                     { 2.034800500e-02F, -4.084916306e+01F }
+#define SUPERCAP_CALIBRATION_INPUT_VOLTAGE               { 8.047959767e-03F, -3.887796402e-02F }
+#define SUPERCAP_CALIBRATION_CAP_VOLTAGE { 8.221379481e-03F, 5.106547382e-03F }
+
+#endif
