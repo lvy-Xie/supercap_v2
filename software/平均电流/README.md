@@ -56,16 +56,6 @@ CLA Task1 承担采样换算、电压滤波、电流 PI、电压 PID 和 HRPWM �
 
 DMA 通道、跨 ADC 步长及触发配置由 `c2000.syscfg` 生成。F280049 的 DMA 不能直接写 CLA 数据 RAM，CLA 也不能读 GS RAM，因此保留 CPU 的七路原始码提交；控制算法仍全部在 CLA。`AdcDma_Frames` 应持续递增，`AdcDma_Fault=0` 为正常。缓冲映射、故障码和时序说明见 [`ADC DMA 链路`](docs/adc_dma.md)。
 
-## 开机蜂鸣器
-
-`Codes/buzzer.c` 和 `Codes/includes/buzzer.h` 独立实现开机语音“我是顾子文”。源音频为普通话合成语音，8 kHz、单声道、8 位 PCM，时长约 1.05 秒，样本打包为 Flash 常量。音频源文件和重建步骤见 [`tools/audio`](tools/audio/README.md)。
-
-软件音量设为最大：音频打包时做峰值归一化，PWM 使用带边界余量的完整调制范围。
-
-GPIO6 / ePWM4A 使用约 64 kHz PWM 载波，八分频中断按约 8 kHz 更新音频占空比。载波、分频和静音配置由 `c2000.syscfg` 生成。`Buzzer_Init()` 在 `Supercap_Init()` 前调用；`Buzzer_PlayStartupTone()` 在 EINT 后调用，等待期间继续 SFO 和串口轮询，CLA/CPU 控制中断保持运行。音频 ISR 在 RAM 中执行，结束后关闭音频中断并强制输出低电平。该函数不得在 ISR 中调用，播放不会使能功率桥。
-
-现有板上为 2.7 kHz 蜂鸣器，语音清晰度与音量尚需实板验证，源 WAV 的音质不代表该蜂鸣器的实际效果。
-
 ## 校准与过压
 
 `Codes/includes/config.h` 保存 V2 的七路线性校准系数。输入电流、底盘电流、母线电压及电容电压已有拟合；桥 A、桥 B 仍为理论值。电容电流已按本次实测 `I_CAP_Raw=1966 → 1 A` 修正偏置，斜率保留原理论值，其他电流范围仍待验证。旧 UID/有效标记均为 0，已删除无实际绑定作用的校准许可状态机。
