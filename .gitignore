@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.obj
+*.out
+*.map
+*.d
+*.log
+software/平均电流/CPU1_FLASH/obj/
+software/平均电流/tmp/
+software/平均电流/output/
