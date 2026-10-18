@@ -1,0 +1,71 @@
+#include "driverlib.h"
+#include "board.h"
+#include "includes/cla_adc_shared.h"
+#include "includes/config.h"
+#include "includes/supercap.h"
+#include "includes/control_cla.h"
+
+
+static const float Cla_Calibration[7][2] = {
+    SUPERCAP_CALIBRATION_BRIDGE_A, SUPERCAP_CALIBRATION_BRIDGE_B,
+    SUPERCAP_CALIBRATION_INPUT_CURRENT, SUPERCAP_CALIBRATION_CAP_CURRENT,
+    SUPERCAP_CALIBRATION_CHASSIS, SUPERCAP_CALIBRATION_INPUT_VOLTAGE,
+    SUPERCAP_CALIBRATION_CAP_VOLTAGE
+};
+static float filteredVBUS, filteredVCAP;
+
+#pragma CODE_SECTION(Cla1Task1, "Cla1Prog")
+__interrupt void Cla1Task1(void)
+{
+    uint16_t i;
+    uint16_t frameSequence = AdcDma_Frame.sequence;
+    asm(" MSETFLG RNDF32=1"); // 与 DCL 的 round-to-nearest 浮点运算一致。
+    if (AdcDma_Frame.valid != ADC_DMA_FRAME_MAGIC || frameSequence == Cla_AdcData.sequence) {
+        Cla_ControlStop(5U);
+        return;
+    }
+    for (i = 0; i < 7U; ++i) Cla_AdcData.raw[i] = AdcDma_Frame.raw[i];
+    for (i = 0; i < 5U; ++i) {
+        Cla_AdcData.physical[i] = Cla_AdcData.raw[i] * Cla_Calibration[i][0] + Cla_Calibration[i][1];
+    }
+    filteredVBUS += LPF_ALPHA * (Cla_AdcData.raw[5] * Cla_Calibration[5][0] + Cla_Calibration[5][1] - filteredVBUS);
+    filteredVCAP += LPF_ALPHA * (Cla_AdcData.raw[6] * Cla_Calibration[6][0] + Cla_Calibration[6][1] - filteredVCAP);
+    Cla_AdcData.physical[5] = filteredVBUS;
+    Cla_AdcData.physical[6] = filteredVCAP;
+    // CLA 独立完成采样 -> 控制 -> HRPWM；CPU 仅接收完成通知并做监督/遥测。
+    {
+        volatile Electronic_Data_s *d = &SuperCap_Control.Electronic_Data;
+        for (i = 0; i < 7U; ++i) d->Raw[i] = Cla_AdcData.raw[i];
+        d->I_A_Raw = d->Raw[0]; d->I_B_Raw = d->Raw[1];
+        d->I_IN_Raw = d->Raw[2]; d->I_CAP_Raw = d->Raw[3];
+        d->I_OUT_Raw = d->Raw[4]; d->VBUS_Raw = d->Raw[5]; d->VCAP_Raw = d->Raw[6];
+        d->I_A = Cla_AdcData.physical[0]; d->I_B = Cla_AdcData.physical[1];
+        d->I_IN = Cla_AdcData.physical[2]; d->I_CAP = Cla_AdcData.physical[3];
+        d->I_OUT = Cla_AdcData.physical[4];
+        d->I_DCDC = d->I_IN - d->I_OUT;
+        d->VBUS = filteredVBUS; d->VCAP = filteredVCAP;
+    }
+    if (!SuperCap_Control.Supercap_Enable_Flag && !SuperCap_Control.PWM_Running)
+        Control_StopRequest = 0; // CPU 已确认停波，允许修正参数后再次准备。
+    if (!SuperCap_Control.Supercap_Enable_Flag) {
+        EPWM_forceTripZoneEvent(PWM_BRIDGE_A_BASE, EPWM_TZ_FORCE_EVENT_OST);
+        EPWM_forceTripZoneEvent(PWM_BRIDGE_B_BASE, EPWM_TZ_FORCE_EVENT_OST);
+    }
+    if (!Control_StopRequest) Control_Loop();
+    Cla_AdcData.sequence = frameSequence; // 最后确认消费，下一帧才允许覆盖 CPU->CLA 消息。
+}
+
+#pragma CODE_SECTION(Cla1Task8, "Cla1Prog")
+__interrupt void Cla1Task8(void)
+{
+    uint16_t i;
+    filteredVBUS = 0.0f;
+    filteredVCAP = 0.0f;
+    Cla_ControlInit();
+    for (i = 0; i < 7U; ++i) {
+        Cla_AdcData.physical[i] = 0.0f;
+        Cla_AdcData.raw[i] = 0;
+    }
+    Cla_AdcData.sequence = 0;
+    Cla_AdcData.initialized = CLA_ADC_INIT_MAGIC;
+}
