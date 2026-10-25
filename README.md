@@ -9,8 +9,12 @@
 ```text
 supercap_v2/
 ├── README.md
-├── hardware/                  # 硬件资料预留，暂不放置资料
-│   └── README.md
+├── hardware/                  # V2.1 硬件资料（原理图 / PCB / Gerber / BOM / STEP）
+│   ├── README.md
+│   ├── schematic/             # 原理图 PDF
+│   ├── pcb/                   # 嘉立创 EDA 工程 + Gerber 生产包
+│   ├── bom/                   # 物料清单（73 项，立创编号）
+│   └── mechanical/            # STEP 3D 模型
 └── software/
     ├── README.md
     ├── 平均电流/               # 当前工程源码及配套文件
@@ -28,7 +32,7 @@ supercap_v2/
         └── README.md
 ```
 
-`hardware/` 仅用 README.md 保留目录，暂不上传硬件资料。
+`hardware/` 已归档 V2.1 全套设计资料：原理图 PDF、嘉立创 EDA 专业版工程（`.epro2`）、Gerber 生产包（4 层，含钻孔与飞针测试文件）、BOM（73 项，立创商城编号）、STEP 3D 模型。文件清单、校验和与打样流程见 [`hardware/README.md`](hardware/README.md)。
 
 ## 项目组成
 
@@ -91,7 +95,7 @@ supercap_v2/
 
 ## 后续完善
 
-- 硬件设计文件及版本说明。
+- ~~硬件设计文件及版本说明~~（已完成：V2.1 原理图 / PCB / Gerber / BOM / STEP 见 `hardware/`）。
 - 平均电流控制的完整调试流程与验证结果。
 - 峰值电流控制工程。
 - 通信协议、接口说明及软硬件功能对应表。

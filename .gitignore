@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# 3D 模型：仓库只保留压缩包，解压出来的 .step 不提交
+hardware/mechanical/*.step
+
+# EDA / KiCad 备份与临时文件
+*.bak
+*.kicad_prl
+*.kicad_pcb-bak
+*-backups/
+*.autosave
+
+# Python
+__pycache__/
+*.pyc
+
+# 日志与临时产物
+*.log
+*.tmp
